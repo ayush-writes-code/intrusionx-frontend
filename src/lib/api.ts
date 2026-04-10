@@ -56,6 +56,9 @@ export interface ForensicsData {
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
+  headers: {
+    "Bypass-Tunnel-Reminder": "true",
+  }
 });
 
 export const detectMedia = async (file: File): Promise<DetectionResponse> => {
