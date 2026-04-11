@@ -241,7 +241,7 @@ const LetterGlitch = ({
     width: '100%',
     height: '100%',
     pointerEvents: 'none',
-    background: 'radial-gradient(circle, rgba(8,10,15,0) 20%, rgba(8,10,15,1) 90%)' // Adjusted vignette colors for IntrusionX background
+    background: 'radial-gradient(circle, rgba(8,10,15,0) 20%, rgba(8,10,15,1) 90%)' // Adjusted vignette colors for Tattva.AI background
   };
 
   const centerVignetteStyle = {
