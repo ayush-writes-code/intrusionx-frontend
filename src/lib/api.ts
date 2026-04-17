@@ -55,6 +55,7 @@ export interface DetectionResponse {
     size_bytes?: number;
     [key: string]: any;
   };
+  forensics?: ForensicsData;
 }
 
 export interface ForensicsData {
@@ -76,7 +77,7 @@ export const detectMedia = async (file: File): Promise<DetectionResponse> => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await apiClient.post<DetectionResponse>("/detect/auto", formData);
+    const response = await apiClient.post<DetectionResponse>("/detect/full", formData);
     return response.data;
   } catch (error: any) {
     console.error("Detection API Error: ", error);
@@ -97,19 +98,6 @@ export const getHeatmap = async (file: File): Promise<string | null> => {
   } catch (error: any) {
     console.error("Heatmap API Error: ", error);
     return null;
-  }
-};
-
-export const getForensics = async (file: File): Promise<ForensicsData> => {
-  try {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const response = await apiClient.post("/detect/forensics", formData);
-    return response.data.forensics || {};
-  } catch (error: any) {
-    console.error("Forensics API Error: ", error);
-    return {};
   }
 };
 

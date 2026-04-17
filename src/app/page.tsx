@@ -91,14 +91,12 @@ export default function Home() {
     setUploadedFile(file);
 
     try {
-      // Run detection and forensics generation in parallel
-      const [response, forensicData] = await Promise.all([
-        detectMedia(file),
-        getForensics(file),
-      ]);
+      // Run unified single-pass detection and forensics
+      const response = await detectMedia(file);
 
+      // Deserialise the master response into the components cleanly
       setResult(response);
-      setForensics(forensicData);
+      setForensics(response.forensics || {});
     } catch (error) {
       console.error(error);
       setResult({
